@@ -28,7 +28,7 @@ function parseGeocacheLine(line){
 
   }
   else{
-    let marker_desc = "<b>"+name_g+"</b><br>ID: "+id_g+"<br>"+lat_g.toFixed(7).toString()+","+long_g.toFixed(7).toString()+"<br> <a href='"+"https://www.geocaching.com/geocache/"+id_g+"'>Jump to GeoCaching.com</a>";
+    let marker_desc = "<b>"+name_g+"</b><br>ID: "+id_g+"<br>"+lat_g.toFixed(7).toString()+","+long_g.toFixed(7).toString()+"<br> <a href='"+"https://www.geocaching.com/geocache/"+id_g+"' target='_blank'>Jump to GeoCaching.com</a>";
 
     //console.log(lat_g,long_g);
     let marker = L.marker([lat_g,long_g]).bindPopup(marker_desc).addTo(map);
@@ -69,6 +69,7 @@ const successCallback = (position) => {
     //map.panTo(new L.LatLng(latitude,longitude));
     map.setView([latitude_user,longitude_user], 9);
     //Weird bug: after this, all markers are removed. Rerun again
+    putGeocaches();
     putGeocaches();
 }
   

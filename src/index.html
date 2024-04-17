@@ -97,10 +97,30 @@
     <script src="./js/map.js"></script>  
     <script>
       
+      const searchParams = new URLSearchParams(window.location.search);
+
+      console.log(searchParams.has('lat'))
+
+      if (searchParams.has('lat') == true){
+
+        var lat = parseFloat(searchParams.get('lat').split(",")[0]);
+        var long = parseFloat(searchParams.get('lat').split(",")[1].split("=")[1]);
+        var zoom = 10;
+      
+        console.log("Using previous location!");
+        
+      }
+
+      else{
+        var lat = 0;
+        var long = 0;
+        var zoom = 3.5;
+      }
+
       var map = L.map("map", {
         zoomControl: false,
-        center: [0,0],
-        zoom: 3.5
+        center: [lat,long],
+        zoom: zoom
       });
 
       map.on('dragend', function(e) {
@@ -125,6 +145,7 @@
         .sidebar({ container: "sidebar", position: "left" })
         .addTo(map)
         .open("home");
+      putGeocaches();
     </script>
     <script>
       $(document).foundation();
