@@ -26,13 +26,15 @@ import auth_keys
 import random
 import time
 
-step_size = 1
+step_size = 0.1
 
 lats = np.arange(35.947887,56.262117,step_size)
 longs = np.arange(-100.9304559,-76.3218229,step_size)
 
 
 magic_word = "geocatchermagicword"
+
+print("Using new version.")
 
 f = open("scrape.txt",'wb')
 
