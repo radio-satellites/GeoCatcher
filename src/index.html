@@ -34,6 +34,23 @@
       color: #aaa;
     }
   </style>
+  <script>
+        function useLive(){
+  var checkBox = document.getElementById("liveyes");
+  var text = document.getElementById("errortext");
+
+  if (checkBox.checked == true){
+    useLive = true;
+    document.getElementById('errortext').innerText = "Warning! You are using live mode! This will directly query from the geocache website rather than the GeoCatcher DB. You will get slower response times. ";
+    document.getElementById('errortext').style.color = "red";
+  }
+  else{
+    useLive = false;
+    document.getElementById('errortext').innerText = "";
+  }
+
+}
+  </script>
   <body>
 
     <div id="sidebar" class="leaflet-sidebar collapsed">
@@ -64,13 +81,12 @@
             <h6><b>Settings</b></h6>
             <p style="color:green;" id="serverconntext"></p>
             <p style="color:red;" id="errortext"></p>
-            <div class="slider" data-slider data-initial-start="25" data-initial-end="75">
-              <span class="slider-handle" data-slider-handle role="slider" tabindex="1"></span>
-              <span class="slider-fill" data-slider-fill></span>
-              <span class="slider-handle" data-slider-handle role="slider" tabindex="1"></span>
-              <input type="hidden">
-              <input type="hidden">
-            </div>
+            <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for geocaches..." title="Type in a geocache name">
+            <br>
+            <br>
+            <br>
+            <input type="checkbox" id="liveyes" name="liveyes" value="Yes" onclick="useLive()">
+            <label for="liveyes"> Use live mode</label><br>
             <br>
             <h6><b>About</b></h6>
             <p>Hey! I'm Sasha, an unqualified 9th grader in Canada somehow running this website. </p>
@@ -96,7 +112,8 @@
     <script src="./js/leaflet_buttons.js"></script>  
     <script src="./js/map.js"></script>  
     <script>
-      
+
+
       const searchParams = new URLSearchParams(window.location.search);
 
       console.log(searchParams.has('lat'))
